@@ -1,0 +1,25 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "EvilBot",
+	"classinstvars" : [
+		"default"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"host",
+		"port",
+		"nick",
+		"password",
+		"desc",
+		"channels",
+		"socketStream",
+		"gkey",
+		"cx",
+		"commands",
+		"log"
+	],
+	"name" : "EBEvilBot",
+	"type" : "normal"
+}
