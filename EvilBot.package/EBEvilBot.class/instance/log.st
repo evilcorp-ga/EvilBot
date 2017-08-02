@@ -1,5 +1,7 @@
 accessing
 log
 	^log ifNil: [ 
-		log := Workspace openLabel: 'IRCLog'.
+		Smalltalk isHeadless
+			ifTrue: [ log := Workspace openLabel: 'IRCLog']
+			ifFalse: [ log := '' ].
 		log]
