@@ -8,7 +8,7 @@ defaults
 	self port: 6667.
 	socketStream := SocketStream openConnectionToHostNamed: self host port: self port.
 	socketStream noTimeout.
-	socketStream autoFlush.
+	"socketStream autoFlush."
 	self log: socketStream nextLine.
 	self log: socketStream nextLine.
 	self sendCommand: 'USER ',self nick,' ',self nick,' ',self nick,': I am EVIL'.

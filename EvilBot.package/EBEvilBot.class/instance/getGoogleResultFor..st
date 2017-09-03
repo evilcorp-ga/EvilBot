@@ -1,6 +1,7 @@
 accessing
 getGoogleResultFor: aQuery
 | aURL aResponse aResults|
+true ifTrue: [ ^OrderedCollection with: ('Error' -> 'I can''t seem to do that') ].
 aURL := 'https://www.googleapis.com/websearch/v1?key=',gkey,'&cx=',cx,'&q=',aQuery.
 aResponse := (ZnEasy get: aURL) contents.
 aResponse = 'Not Found' ifTrue: [ ^OrderedCollection with: ('not' -> 'found') ].
