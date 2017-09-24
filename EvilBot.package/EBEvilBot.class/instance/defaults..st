@@ -1,5 +1,6 @@
 accessing
-defaults
+defaults: aPass
+	self password: aPass.
 	channels := OrderedCollection with: #evilcorp.
 	self setKeys.
 	self desc: 'I am an Evil Bot'.

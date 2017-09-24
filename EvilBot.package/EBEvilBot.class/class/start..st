@@ -1,4 +1,3 @@
 accessing
 start: aPassword
-	self default password: aPassword.
-	self default defaults
+	default := self new defaults: aPassword

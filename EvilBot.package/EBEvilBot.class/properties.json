@@ -18,7 +18,8 @@
 		"gkey",
 		"cx",
 		"commands",
-		"log"
+		"log",
+		"names"
 	],
 	"name" : "EBEvilBot",
 	"type" : "normal"

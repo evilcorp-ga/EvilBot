@@ -6,7 +6,9 @@ processCommand: aCmd withArray: anArray
 		ifTrue: [ self weatherCommand: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!SEARCH')
 		ifTrue: [ self searchCommand: aCmd withArray: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: '!SAVE')
+	(aCmd asUppercase = '!SAVE')
 		ifTrue: [ self processSaveCommand: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: '!HELP')
+	(aCmd asUppercase = '!HELP')
 		ifTrue: [ self sendCommand: 'PRIVMSG ',aLoc,' try !weather' ].
+	(aCmd asUppercase = '!DICE')
+		ifTrue: [ self processDiceCommand: aLoc ]
