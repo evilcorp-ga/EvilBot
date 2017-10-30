@@ -2,9 +2,9 @@ initialization
 setupCommandFiltering
 	[
 		[socketStream isConnected] whileTrue: [ | anArr textArr aCmd aLine |
-			aLine := [socketStream nextLine] on: ConnectionClosed do: [self class quit].
+			aLine := [socketStream nextLine] on: ConnectionClosed do: [self class restart].
 			(aLine beginsWith: 'PING') 
-				ifTrue: [ socketStream sendCommand: 'PONG' ]
+				ifTrue: [ self sendCommand: 'PONG' ]
 				ifFalse: [  
 					self log: aLine.
 					anArr := aLine substrings: ' '.

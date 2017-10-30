@@ -1,7 +1,6 @@
 accessing
 sendCityHelpCommandFor: aLoc cities: opt
 | aParser aSt|
-	socketStream sendCommand: 'PRIVMSG ',aLoc,' Valid cities are: ' .
 	aParser := NeoCSVWriter on: (aSt := WriteStream on: '').
 	aParser nextPut: opt asOrderedCollection.
-	socketStream sendCommand: 'PRIVMSG ',aLoc,' ',((aSt contents copyReplaceAll: (String crlf asString) with: '') ifEmpty: ['Nothing']).
+	self sendCommand: 'PRIVMSG ',aLoc,' :Valid Cities are ',(((aSt contents copyReplaceAll: (String crlf asString) with: '') contractTo: 1500) asString)

@@ -9,6 +9,6 @@ processCommand: aCmd withArray: anArray
 	(aCmd asUppercase = '!SAVE')
 		ifTrue: [ self processSaveCommand: anArray to: aLoc ].
 	(aCmd asUppercase = '!HELP')
-		ifTrue: [ self sendCommand: 'PRIVMSG ',aLoc,' try !weather' ].
+		ifTrue: [ self sendCommand: 'PRIVMSG ',aLoc,' :try !weather' ].
 	(aCmd asUppercase = '!DICE')
 		ifTrue: [ self processDiceCommand: aLoc ]

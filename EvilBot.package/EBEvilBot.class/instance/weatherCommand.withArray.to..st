@@ -5,11 +5,11 @@ weatherCommand: aCmd withArray: anArray to: aLoc
 		arr size > 1 ifTrue: [ aCountry := (arr at: 2) trimBoth copyFrom: 1 to: 2].
 		arr := aCmd substrings: ','.
 		arr size > 1 ifTrue: [ aCity := (arr at: 2) trimBoth ].
-		aCountry isNil ifTrue: [ ^self sendCommand: 'PRIVMSG ',aLoc,' Enter a Country Code (eg, USA, IN, ZA)' ].
+		aCountry isNil ifTrue: [ ^self sendCommand: 'PRIVMSG ',aLoc,' :Enter a TWO LETTER Country Code (eg, US, IN, ZA)' ].
 		aCity isNil 
 		ifTrue: [  
 			opt := ((WeatherDB default data select: [ :e | (e at: 'Country code') = aCountry asUppercase]) collect: [ :e | e at: 'City name English' ]) asSet asOrderedCollection.
-			self sendCommand: 'PRIVMSG ',aLoc,' use !weather TwoLetterCountryCode (eg ZA), City Name'.
+			self sendCommand: 'PRIVMSG ',aLoc,' :use !weather TwoLetterCountryCode (eg ZA), City Name'.
 			self sendCityHelpCommandFor: aLoc cities: opt.
 		]
 		ifFalse: [
