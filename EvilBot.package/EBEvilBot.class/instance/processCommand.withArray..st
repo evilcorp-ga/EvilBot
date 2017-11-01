@@ -6,6 +6,8 @@ processCommand: aCmd withArray: anArray
 		ifTrue: [ self weatherCommand: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!SEARCH')
 		ifTrue: [ self searchCommand: aCmd withArray: anArray to: aLoc ].
+	(aCmd asUppercase beginsWith: '!TIME')
+		ifTrue: [ self processTimeCommand: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase = '!SAVE')
 		ifTrue: [ self processSaveCommand: anArray to: aLoc ].
 	(aCmd asUppercase = '!HELP')

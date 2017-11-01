@@ -9,8 +9,9 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"data",
-		"places"
+		"places",
+		"timeZones"
 	],
-	"name" : "WeatherDB",
+	"name" : "EBEvilDB",
 	"type" : "normal"
 }

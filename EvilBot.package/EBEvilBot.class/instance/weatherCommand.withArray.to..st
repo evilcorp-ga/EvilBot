@@ -8,13 +8,13 @@ weatherCommand: aCmd withArray: anArray to: aLoc
 		aCountry isNil ifTrue: [ ^self sendCommand: 'PRIVMSG ',aLoc,' :Enter a TWO LETTER Country Code (eg, US, IN, ZA)' ].
 		aCity isNil 
 		ifTrue: [  
-			opt := ((WeatherDB default data select: [ :e | (e at: 'Country code') = aCountry asUppercase]) collect: [ :e | e at: 'City name English' ]) asSet asOrderedCollection.
+			opt := ((EBEvilDB default data select: [ :e | (e at: 'Country code') = aCountry asUppercase]) collect: [ :e | e at: 'City name English' ]) asSet asOrderedCollection.
 			self sendCommand: 'PRIVMSG ',aLoc,' :use !weather TwoLetterCountryCode (eg ZA), City Name'.
 			self sendCityHelpCommandFor: aLoc cities: opt.
 		]
 		ifFalse: [
 			|weather|
-			opt := ((WeatherDB default data select: [ :e | 
+			opt := ((EBEvilDB default data select: [ :e | 
 				((e at: 'Country code') asUppercase = aCountry asUppercase) & 
 				(e at: 'City name English') asUppercase = aCity asUppercase]) asSet asOrderedCollection).
 			opt isEmpty ifTrue: [^self sendCommand: 'PRIVMSG ',aLoc,' Thats weird!' ] ifFalse: [ opt := opt first ].
