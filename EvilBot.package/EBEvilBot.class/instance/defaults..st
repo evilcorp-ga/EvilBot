@@ -4,7 +4,7 @@ defaults: aPass
 	channels := OrderedCollection with: #evilcorp.
 	self setKeys.
 	self desc: 'I am an Evil Bot'.
-	self nick: 'EvilBot'.
+	self nick: self nick.
 	self host: 'irc.evilcorp.ga'.
 	self port: 6667.
 	socketStream := SocketStream openConnectionToHostNamed: self host port: self port.

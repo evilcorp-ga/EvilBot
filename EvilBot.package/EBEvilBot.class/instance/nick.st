@@ -1,3 +1,3 @@
 accessing
 nick
-	^ nick
+	^ nick ifNil: [ nick := 'DevBot'. nick ]
