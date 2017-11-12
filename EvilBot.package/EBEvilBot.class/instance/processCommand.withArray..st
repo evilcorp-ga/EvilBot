@@ -12,3 +12,5 @@ processCommand: aCmd withArray: anArray
 	(aCmd asUppercase beginsWith: '!WIKI') ifTrue: [ self processLink: 'wiki' from: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!IRC') ifTrue: [ self processLink: 'irc' from: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!PASTE') ifTrue: [ self processLink: 'paste' from: anArray to: aLoc ].
+	(aCmd asUppercase = '!PING') ifTrue: [ self processPingFrom: anArray to: aLoc ].
+	(aCmd asUppercase beginsWith: '!8BALL') ifTrue: [ self processEightBall: anArray to: aLoc ]

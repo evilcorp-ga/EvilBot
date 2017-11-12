@@ -7,5 +7,6 @@ results := (aTag findAllTags: 'a')
 		href := e attributeAt: 'href'.
 		href := [href copyFrom: (href indexOfSubCollection: 'http') to: href size] on: Error do: [:ex | 'huh?'].
 		href urlDecoded ].
+results reject: [ :e | e includesSubstring: 'duckduckgo' ].
 results := [results copyFrom: 2 to: 4] on: Error do: [:ex | OrderedCollection with: 'huh?'].
 ^results

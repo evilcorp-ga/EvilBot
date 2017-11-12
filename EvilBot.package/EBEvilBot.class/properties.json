@@ -19,7 +19,8 @@
 		"cx",
 		"commands",
 		"log",
-		"names"
+		"names",
+		"lastPong"
 	],
 	"name" : "EBEvilBot",
 	"type" : "normal"

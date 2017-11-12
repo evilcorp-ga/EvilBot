@@ -5,4 +5,5 @@ processNoticeCommandWith: anArray
 			ifTrue: [
 				self sendCommand: 'PRIVMSG nickserv identify ', self password.
 				self sendCommand: 'JOIN #evilcorp'.
-			]
+			].
+		((anArray at: 2) copyWithout: (Character home)) trimBoth = 'PING' ifTrue: [ self lastPong: anArray ].
