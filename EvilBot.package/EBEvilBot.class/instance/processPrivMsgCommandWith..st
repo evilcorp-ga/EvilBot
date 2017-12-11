@@ -8,5 +8,7 @@ processPrivMsgCommandWith: anArray
 				((anArray at: 2) beginsWith: '!')
 					ifTrue: [ self processCommand: (anArray at: 2) withArray: anArray ].
 				((anArray at: 2) asUppercase includesSubstring: 'C++')
-					ifTrue: [ ^self sendCommand: 'PRIVMSG ',((anArray first substrings: ' ') last),' :c++ is to c what brain damage is to a brain' ]
+					ifTrue: [ ^self sendCommand: 'PRIVMSG ',((anArray first substrings: ' ') last),' :c++ is to c what brain damage is to a brain' ].
+				((anArray at: 2) asUppercase includesSubstring: 'KEK')
+					ifTrue: [ ^self sendCommand: 'PRIVMSG ',((anArray first substrings: ' ') last),' :STOP THAT! use lol instead' ]
 			]
