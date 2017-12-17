@@ -21,7 +21,8 @@
 		"log",
 		"names",
 		"lastPong",
-		"bugs"
+		"bugs",
+		"currancyKey"
 	],
 	"name" : "EBEvilBot",
 	"type" : "normal"
