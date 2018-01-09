@@ -12,9 +12,8 @@ setupCommandFiltering
 				ifFalse: [ 
 					self log: aLine.
 					anArr := aLine substrings: ' '.
-					textArr := aLine substrings: ':'.
+					textArr := self getArrFrom: aLine.
 					aCmd := anArr size > 1
 						ifTrue: [ anArr at: 2 ]
 						ifFalse: [ 0 ].
-					self log: aCmd asString.
 					self processCommand: aCmd from: textArr ] ] ] ] fork

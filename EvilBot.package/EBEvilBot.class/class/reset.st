@@ -1,3 +1,4 @@
 accessing
 reset
-	default := nil
+	default := nil.
+	logs := nil.

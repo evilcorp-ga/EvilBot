@@ -9,7 +9,7 @@ anArr := ((anArray at: 2) substrings: ' ') copyFrom: 2 to: ((anArray at: 2) subs
 	^self sendCommand: 'PRIVMSG ',aLoc,' :',res asString
 ].
 (anArr second = 'USD')
-	ifTrue: [ res := ((aData at: ((anArr second),(anArr first)) ifAbsent: [^self sendCommand: 'PRIVMSG ',aLoc,' :Your mom'])) / (anArr last asNumber) ]
+	ifTrue: [ res := ((aData at: ((anArr second),(anArr first)) ifAbsent: [^self sendCommand: 'PRIVMSG ',aLoc,' :Your mom'])) * (anArr last asNumber) ]
 	ifFalse: [ | from to amount|
 		from := 'USD',(anArr first).
 		to := 'USD',(anArr second).
