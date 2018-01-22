@@ -1,10 +1,10 @@
 accessing
 defaults
-	channels := OrderedCollection with: #evilcorp.
+	channels := self class defaultchannels.
 	self setKeys.
-	self desc: 'I am an Evil Bot'.
+	self desc: (self class defaultdesc).
 	self nick: self nick.
-	self host: 'irc.evilcorp.ga'.
+	self host: (self class defaulthost).
 	self port: 6667.
 	socketStream := SocketStream openConnectionToHostNamed: self host port: self port.
 	socketStream noTimeout.

@@ -4,6 +4,6 @@ processNoticeCommandWith: anArray
 		((anArray at: 2) beginsWith:'please choose a different nick')
 			ifTrue: [
 				self sendCommand: 'PRIVMSG nickserv identify ', self password.
-				self sendCommand: 'JOIN #evilcorp'.
+				self sendCommand: 'JOIN #evilcorp'. "You can remove this on your own server"
 			].
 		((anArray at: 2) copyWithout: (Character home)) trimBoth = 'PING' ifTrue: [ self lastPong: anArray ].

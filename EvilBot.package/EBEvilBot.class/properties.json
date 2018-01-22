@@ -23,7 +23,8 @@
 		"names",
 		"lastPong",
 		"bugs",
-		"currancyKey"
+		"currancyKey",
+		"linkSet"
 	],
 	"name" : "EBEvilBot",
 	"type" : "normal"
