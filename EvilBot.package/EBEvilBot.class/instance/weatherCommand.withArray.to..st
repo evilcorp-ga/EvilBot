@@ -10,7 +10,7 @@ weatherCommand: aCmd withArray: anArray to: aLoc
 		ifTrue: [  
 			opt := ((EBEvilDB default data select: [ :e | (e at: 'Country code') = aCountry asUppercase]) collect: [ :e | e at: 'City name English' ]) asSet asOrderedCollection.
 			self sendCommand: 'PRIVMSG ',aLoc,' :use !weather TwoLetterCountryCode (eg ZA), City Name'.
-			self sendCityHelpCommandFor: aLoc cities: opt.
+			self sendCityHelpCommandFor: aLoc cities: opt country: (EBEvilDB default countryNameForCode: aCountry).
 		]
 		ifFalse: [
 			|weather|
