@@ -21,5 +21,6 @@ processCommand: aCmd withArray: anArray
 	(aCmd asUppercase = '!LISTBUGS') ifTrue: [ self processBugsCommand: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!CALC') ifTrue: [ self processCalcCommand: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!DATE') ifTrue: [ self processDateCommand: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: '!CURR') ifTrue: [ self processCurrancyCommand: anArray to: aLoc ]
+	(aCmd asUppercase beginsWith: '!CURR') ifTrue: [ self processCurrancyCommand: anArray to: aLoc ].
+	(aCmd asUppercase beginsWith: '!PORN') ifTrue: [ self sendCommand: 'PRIVMSG ',aLoc,' :Oh oh oh OH OH AH HA YES YES YES YEEEEEESSSSS' ]
 	
