@@ -20,4 +20,4 @@ a := a,' and a ',((e elementAt: 'windSpeed') attributeAt: 'name'),
 		(wind attributeAt: 'name')),' direction.'.
 forecasts add: a.
 ].
-forecasts do: [ :e | self sendCommand: 'PRIVMSG ',aLoc,' :',e ]
+forecasts do: [ :e | self sendPrv: e to: aLoc ]

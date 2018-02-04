@@ -11,5 +11,5 @@ processLink: linkset from: anArray to: aLoc
 					i = v size ifFalse: [ st nextPut: $, ].
 					st space. ] 
 				].
-		self sendCommand: 'PRIVMSG ',aLoc,' :',links
+		self sendPrv: links to: aLoc
 	]].

@@ -7,6 +7,6 @@ processBugCommand: anArray to: aLoc
 			aUser := (anArray first substrings: '!') first.
 			aBug := (anArray last copyFrom: 5 to: (anArray last size)) trimBoth.
 			self fileBug: (aUser -> aBug).
-			self sendCommand: 'PRIVMSG ',aLoc,' :Bug Filed' ]
+			self sendPrv: 'Bug Filed' to: aLoc]
 		ifFalse: [ 
-			self sendCommand: 'PRIVMSG ',aLoc,' :Who are you?' ]
+			self sendPrv: 'Who are you?' to: aLoc]

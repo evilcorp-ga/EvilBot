@@ -4,6 +4,7 @@ processCommand: aCmd withArray: anArray
 	aLoc := ((anArray first substrings: ' ') last).
 	(aCmd asUppercase beginsWith: '!WEATHER') ifTrue: [ self weatherCommand: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!SEARCH') ifTrue: [ self searchCommand: aCmd withArray: anArray to: aLoc ].
+	(aCmd asUppercase beginsWith: '!YOUTUBE') ifTrue: [ self searchYoutube: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!TIME') ifTrue: [ self processTimeCommand: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase = '!SAVE') ifTrue: [ self processSaveCommand: anArray to: aLoc ].
 	(aCmd asUppercase = '!QUIT') ifTrue: [ self processQuitCommand: aLoc with: anArray  ].
@@ -22,5 +23,6 @@ processCommand: aCmd withArray: anArray
 	(aCmd asUppercase beginsWith: '!CALC') ifTrue: [ self processCalcCommand: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!DATE') ifTrue: [ self processDateCommand: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '!CURR') ifTrue: [ self processCurrancyCommand: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: '!PORN') ifTrue: [ self sendCommand: 'PRIVMSG ',aLoc,' :Oh oh oh OH OH AH HA YES YES YES YEEEEEESSSSS' ]
+	(aCmd asUppercase beginsWith: '!PORN') ifTrue: [ self sendPrv: 'Oh oh oh OH OH AH HA YES YES YES YEEEEEESSSSS' to: aLoc].
+	(aCmd asUppercase beginsWith: '!MEW') ifTrue: [ self sendPrv: 'MEW MEW STYLE! MEW MEW GRACE! MEW MEW POWER! IN YOUR FACE!' to: aLoc]
 	
