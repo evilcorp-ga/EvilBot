@@ -7,7 +7,7 @@ results := (aTag findAllTags: 'a')
 		href := e attributeAt: 'href'.
 		href := [href copyFrom: (href indexOfSubCollection: 'http') to: href size] 
 			on: Error do: [:ex | 'huh?'].
-		(self htmlDecode: e text urlDecoded) -> href urlDecoded.].
+		(self htmlDecode: ([e text urlDecoded] on: Error do: [:er | e text])) -> href urlDecoded.].
 results := results reject: [ :e | (e value includesSubstring: 'duckduckgo') | (e = 'huh?') ].
 (aQuery includesSubstring: 'site:youtube.com')
 	ifTrue: [results := results select: [ :e | (e value includesSubstring: 'youtube.com') ]].
