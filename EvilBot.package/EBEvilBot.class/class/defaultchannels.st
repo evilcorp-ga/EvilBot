@@ -1,3 +1,3 @@
 accessing
 defaultchannels
-	^OrderedCollection with: #evilcorp.
+	^OrderedCollection with: #evilcorp with: #lobby.

@@ -6,9 +6,8 @@ processPrivMsgCommandWith: anArray
 				((anArray at: 2) asUppercase includesSubstring: (self nick asUppercase))
 					ifTrue: [ self sendPrv: self randomGreeting to: ((anArray first substrings: ' ') last)].
 				((anArray at: 2) asUppercase includesSubstring: 'C++')
-					ifTrue: [ self sendPrv: 'c++ is to c what brain damage is to a brain' to: ((anArray first substrings: ' ') last)].
+					ifTrue: [ self sendPrv: '"c++ is to c what brain damage is to a brain" -moth' to: ((anArray first substrings: ' ') last)].
 				((anArray at: 2) asUppercase includesSubstring: 'KEK')
 					ifTrue: [ self sendPrv: 'STOP THAT! use lol instead' to: ((anArray first substrings: ' ') last)].
-				Transcript crShow: (anArray at: 2).
 				self processCommand: (anArray at: 2) withArray: anArray
 			]
