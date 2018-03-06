@@ -1,6 +1,6 @@
 accessing
 eightBall
-^'It is certain
+^ eightball ifNil: [eightball := 'It is certain
 It is decidedly so
 Without a doubt
 Yes definitely
@@ -19,4 +19,4 @@ Don''t count on it
 My reply is no
 My sources say no
 Outlook not so good
-Very doubtful' substrings: (String crlf)
+Very doubtful' substrings: (String crlf). eightball]

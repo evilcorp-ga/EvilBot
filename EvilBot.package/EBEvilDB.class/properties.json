@@ -10,7 +10,9 @@
 	"instvars" : [
 		"data",
 		"places",
-		"timeZones"
+		"timeZones",
+		"eightball",
+		"tourettes"
 	],
 	"name" : "EBEvilDB",
 	"type" : "normal"

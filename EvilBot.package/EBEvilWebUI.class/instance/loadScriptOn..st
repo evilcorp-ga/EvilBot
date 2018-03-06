@@ -4,8 +4,9 @@ loadScriptOn: stream
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 		function loadLocation(anID){
-			$("#data").empty();
-			$.get("/evildb/"+anID, function(d){ data = d });
-			$("#data").html( data )
+			$.get("/evildb/"+anID, function(d){ 
+				$("#data").empty();
+				$("#data").html( d )
+			});
 		}
 	</script>'
