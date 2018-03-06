@@ -1,6 +1,7 @@
 accessing
 processCurrancyCommand: anArray to: aLoc
 | anArr res aData|
+true ifTrue: [ ^self sendPrv: 'I lost my keys :(' to: aLoc].
 aData := self currancyData.
 anArr := ((anArray at: 2) substrings: ' ') copyFrom: 2 to: ((anArray at: 2) substrings: ' ') size.
 [ anArr last asNumber ] on: Error do: [ :ex | ^self sendCommand: 'PRIVMSG ',aLoc,' :Your mom' ].

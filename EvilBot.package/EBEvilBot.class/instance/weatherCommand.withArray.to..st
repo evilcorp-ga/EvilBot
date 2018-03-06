@@ -18,6 +18,6 @@ weatherCommand: aCmd withArray: anArray to: aLoc
 				((e at: 'Country code') asUppercase = aCountry asUppercase) & 
 				(e at: 'City name English') asUppercase = aCity asUppercase]) asSet asOrderedCollection).
 			opt isEmpty ifTrue: [^self sendPrv: 'Thats weird!' to: aLoc] ifFalse: [ opt := opt first ].
-			weather := ZnEasy get: (opt at: 'Link to English-XML' ifAbsent: [ '' ]).
+			weather := ZnEasy get: (opt at: 'Link to English-XML' ifAbsent: [ '' ]) asZnUrl.
 			self returnWeather: aLoc for: weather contents.
 			 ]
