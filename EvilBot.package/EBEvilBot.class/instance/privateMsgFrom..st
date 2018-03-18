@@ -1,5 +1,6 @@
 accessing
 privateMsgFrom: anArray
-	|aUser|
+	|aUser aCmd |
 	aUser := (anArray first substrings: '!') first.
-		self sendPrv: 'I got a private msg :3' to: aUser
+	aCmd := anArray at: 2.
+	self processCommand: aCmd withArray: anArray forLocation: aUser
