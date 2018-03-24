@@ -1,3 +1,3 @@
 accessing
 defaulthost
-	^'fsociety.evilcorp.ga'
+	^'irc.evilcorp.ga'

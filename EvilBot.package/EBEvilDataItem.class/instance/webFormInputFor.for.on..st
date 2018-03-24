@@ -3,7 +3,8 @@ webFormInputFor: prop for: val on: st
 	val class = Dictionary
 		ifTrue: [ 
 			val keysAndValuesDo: [ :k :v | 
-				self webFormInputFor: k for: v on: st
+				( #('_key' 'Country Key' 'City Key' 'Folketal' 'status') includes: k )
+					ifFalse: [ self webFormInputFor: k for: v on: st  ]
 			]
 		]
 		ifFalse: [ 
