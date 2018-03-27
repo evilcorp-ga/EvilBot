@@ -16,12 +16,10 @@ processCommand: aCmd withArray: anArray forLocation: aLoc
 	(aCmd asUppercase beginsWith: 'DISCORD') ifTrue: [ self processLink: 'discord' from: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: 'PING') ifTrue: [ self processPingFrom: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '8BALL') ifTrue: [ self processEightBall: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: 'BUG') ifTrue: [ self processBugCommand: anArray to: aLoc ].
-	(aCmd asUppercase = 'LISTBUGS') ifTrue: [ self processBugsCommand: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: 'CALC') ifTrue: [ self processCalcCommand: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: 'DATE') ifTrue: [ self processDateCommand: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: 'CURR') ifTrue: [ self processCurrancyCommand: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: 'PORN') ifTrue: [ self sendPrv: 'Oh oh oh OH OH AH HA YES YES YES YEEEEEESSSSS' to: aLoc].
-	(aCmd asUppercase beginsWith: 'MEW') ifTrue: [ self sendPrv: 'MEW MEW STYLE! MEW MEW GRACE! MEW MEW POWER! IN YOUR FACE!' to: aLoc].
 	(aCmd asUppercase beginsWith: '?HELP') ifTrue: [ self processHelpCommand: anArray to: aLoc ].
+	self processAdminCommands: aCmd withArray: anArray toLocation: aLoc.
+	self processResponseCommands: aCmd withArray: anArray toLocation: aLoc
 	

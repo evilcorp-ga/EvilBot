@@ -22,9 +22,11 @@
 		"log",
 		"names",
 		"lastPong",
-		"bugs",
 		"currancyKey",
-		"linkSet"
+		"linkSet",
+		"responses",
+		"autoResponses",
+		"authorizedUsers"
 	],
 	"name" : "EBEvilBot",
 	"type" : "normal"
