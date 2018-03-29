@@ -6,4 +6,5 @@ adminRemove: aCmd withArray: anArray to: aLoc
 	aValue := arr last.
 	aList = 'AUTO' ifTrue: [ self autoResponses removeKey: aValue ifAbsent: [  ] ].
 	aList = 'RESPONSE' ifTrue: [ self responses removeKey: aValue ifAbsent: [  ] ].
-	aList = 'ADMIN' ifTrue: [ self authorizedUsers remove: aValue ifAbsent: [  ] ]
+	aList = 'ADMIN' ifTrue: [ self authorizedUsers remove: aValue ifAbsent: [  ] ].
+	self sendPrv: (aValue,' has been removed from ',aList asLowercase) to: aLoc

@@ -10,4 +10,5 @@ adminAddResponse: aCmd withArray: anArray to: aLoc
 			ifTrue: [ str := str nextPutAll: e; space ]
 	].
 	aValue := str contents trimBoth.
-	self responses at: aKey put: aValue
+	self responses at: aKey put: aValue.
+	self sendPrv: (aValue,' has been added to response list') to: aLoc
