@@ -8,12 +8,6 @@ processCommand: aCmd withArray: anArray forLocation: aLoc
 	(aCmd asUppercase = 'SAVE') ifTrue: [ self processSaveCommand: anArray to: aLoc ].
 	(aCmd asUppercase = 'QUIT') ifTrue: [ self processQuitCommand: aLoc with: anArray  ].
 	(aCmd asUppercase = 'DICE') ifTrue: [ self processDiceCommand: aLoc ].
-	(aCmd asUppercase beginsWith: 'LINKS') ifTrue: [ self processLink: 'all' from: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: 'WIKI') ifTrue: [ self processLink: 'wiki' from: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: 'IRC') ifTrue: [ self processLink: 'irc' from: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: 'PASTE') ifTrue: [ self processLink: 'paste' from: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: 'FORUM') ifTrue: [ self processLink: 'forum' from: anArray to: aLoc ].
-	(aCmd asUppercase beginsWith: 'DISCORD') ifTrue: [ self processLink: 'discord' from: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: 'PING') ifTrue: [ self processPingFrom: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: '8BALL') ifTrue: [ self processEightBall: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: 'CALC') ifTrue: [ self processCalcCommand: anArray to: aLoc ].

@@ -17,7 +17,7 @@ weatherCommand: aCmd withArray: anArray to: aLoc
 			opt := ((EBEvilDB default data select: [ :e | 
 				((e at: 'Country code') asUppercase = aCountry asUppercase) & 
 				(e at: 'City name English') asUppercase = aCity asUppercase]) asSet asOrderedCollection).
-			opt isEmpty ifTrue: [^self sendPrv: 'Thats weird!' to: aLoc] ifFalse: [ opt := opt first ].
+			opt isEmpty ifTrue: [^self sendPrv: 'Sorry, I don''t have that information :(' to: aLoc] ifFalse: [ opt := opt first ].
 			weather := self getWeatherFor: (opt at: 'Link to English-XML' ifAbsent: [ '' ]).
 			self returnWeather: aLoc for: weather contents.
 			 ]

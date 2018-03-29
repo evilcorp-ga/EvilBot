@@ -23,7 +23,6 @@
 		"names",
 		"lastPong",
 		"currancyKey",
-		"linkSet",
 		"responses",
 		"autoResponses",
 		"authorizedUsers"
