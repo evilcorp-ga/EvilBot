@@ -11,4 +11,4 @@ adminAddAutoResponse: aCmd withArray: anArray to: aLoc
 	].
 	aValue := str contents trimBoth.
 	self autoResponses at: aKey put: aValue.
-	self sendPrv: (aValue,' has been added to auto response list') to: aLoc
+	self sendPrv: (aKey,' has been added to auto response list') to: aLoc
