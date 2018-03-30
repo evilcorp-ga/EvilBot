@@ -10,6 +10,7 @@ setupCommandFiltering
 			(aLine beginsWith: 'PING')
 				ifTrue: [ self sendCommand: 'PONG' ]
 				ifFalse: [ 
+					aLine := aLine asByteArray utf8Decoded.
 					self log: aLine.
 					anArr := aLine substrings: ' '.
 					textArr := self getArrFrom: aLine.

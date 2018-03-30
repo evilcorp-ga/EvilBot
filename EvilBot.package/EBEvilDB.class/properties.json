@@ -12,7 +12,10 @@
 		"places",
 		"timeZones",
 		"eightball",
-		"tourettes"
+		"tourettes",
+		"responses",
+		"autoResponses",
+		"authorizedUsers"
 	],
 	"name" : "EBEvilDB",
 	"type" : "normal"

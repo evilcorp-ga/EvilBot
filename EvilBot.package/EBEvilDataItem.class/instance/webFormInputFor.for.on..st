@@ -12,5 +12,8 @@ webFormInputFor: prop for: val on: st
 			st nextPutAll: prop asString.
 			st nextPutAll: '</td><td><input type="text" value="'.
 			st nextPutAll: val asString.
+			st nextPutAll: '" '.
+			st nextPutAll: 'name="'.
+			st nextPutAll: prop.
 			st nextPutAll: '"></td></tr>'.
 	]

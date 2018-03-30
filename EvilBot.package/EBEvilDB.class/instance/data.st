@@ -1,3 +1,3 @@
 accessing
 data
-	^data ifNil: [ data := Dictionary new. data ]
+	^data ifNil: [ data := OrderedCollection new. data ]

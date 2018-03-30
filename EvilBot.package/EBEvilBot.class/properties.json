@@ -22,10 +22,7 @@
 		"log",
 		"names",
 		"lastPong",
-		"currancyKey",
-		"responses",
-		"autoResponses",
-		"authorizedUsers"
+		"currancyKey"
 	],
 	"name" : "EBEvilBot",
 	"type" : "normal"
