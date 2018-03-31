@@ -1,0 +1,3 @@
+accessing
+orig
+	^orig
