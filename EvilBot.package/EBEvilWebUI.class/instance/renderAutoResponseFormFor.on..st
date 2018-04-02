@@ -1,8 +1,12 @@
 rendering
 renderAutoResponseFormFor: key on: html
-	html form class: 'responses'; with: [ 
-		html textInput: key.
+	html form class: 'responses'; with: [
+		html text: key.
 		html break.
-		html textInput: ([(EBEvilDB default autoResponses at: key) asByteArray utf8Decoded]
-			on: Error do: [ :ex | (EBEvilDB default autoResponses at: key) ])
+		(EBEvilDB default autoResponses at: key) do: [ :response |
+			html textInput: ([response asByteArray utf8Decoded]
+				on: Error do: [ :ex | response ]) "delete button here"
+		].
+		"new entry here"
+		"submit button here"
 	]

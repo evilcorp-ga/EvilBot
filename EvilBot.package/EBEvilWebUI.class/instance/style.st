@@ -4,6 +4,8 @@ style
 body { 
 	font-size: 10px;
 	font-family: sans-serif;
+	color: white;
+	background-color: black;
 	}
 	
 #menu li { 

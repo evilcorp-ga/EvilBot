@@ -10,5 +10,5 @@ adminAddAutoResponse: aCmd withArray: anArray to: aLoc
 			ifTrue: [ str := str nextPutAll: e; space ]
 	].
 	aValue := str contents trimBoth.
-	self autoResponses at: aKey put: aValue.
+	(self autoResponses at: aKey ifAbsentPut: [ OrderedCollection new ]) add: aValue.
 	self sendPrv: (aKey,' has been added to auto response list') to: aLoc

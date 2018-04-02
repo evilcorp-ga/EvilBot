@@ -6,8 +6,9 @@ processAutomatedResponsesFrom: anArray
 	self autoResponses keysAndValuesDo: [ :k :v |
 		((anArray at: 2) asUppercase includesSubstring: k asUppercase)
 			ifTrue: [ 
-				| aRes |
-				aRes := v copyReplaceAll: '$nick' with: aNick.
+				| aRes anAuto |
+				anAuto := v at: ((Random new) nextInt: (v size)).
+				aRes := anAuto copyReplaceAll: '$nick' with: aNick.
 				aRes := aRes copyReplaceAll: '$chan' with: aLoc.
 				self sendPrv: aRes to: aLoc ]
 		 ].

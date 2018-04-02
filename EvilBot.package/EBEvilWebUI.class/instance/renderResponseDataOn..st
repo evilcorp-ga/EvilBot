@@ -6,5 +6,6 @@ renderResponseDataOn: html
 			html listItem
 				onClick: (html jQuery ajax script: [:s | s << (s jQuery: '#content') html: [:h | self renderResponseFormFor: k on: h ]]);
 				with: [ html text: k ]
-			]
+			].
+		"new button here"
 		]
