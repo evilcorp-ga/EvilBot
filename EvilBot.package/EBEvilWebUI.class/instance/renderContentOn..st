@@ -7,6 +7,6 @@ renderContentOn: html
 		].
 		html tableRow: [
 			html tableData id: 'list'; with: [ self renderCurrancyOn: html ].
-			html tableData id: 'content'; with: [ html text: 'blank' ] 
+			html tableData id: 'content'
 		]
 	]

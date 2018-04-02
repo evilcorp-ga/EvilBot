@@ -7,5 +7,7 @@ renderAutoResponseDataOn: html
 				onClick: (html jQuery ajax script: [:s | s << (s jQuery: '#content') html: [:h | self renderAutoResponseFormFor: k on: h ]]);
 				with: [ html text: k ]
 			].
-		"new button here"
+		html button 
+			onClick: (html jQuery ajax script: [:s | s << (s jQuery: '#content') html: [:h | self renderNewAutoResponseFormOn: h ]]);
+			with: 'New'
 		]

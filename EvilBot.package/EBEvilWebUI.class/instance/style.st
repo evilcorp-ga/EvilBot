@@ -8,11 +8,14 @@ body {
 	background-color: black;
 	}
 	
+li { cursor: pointer; }
+	
 #menu li { 
 	display: inline;
 	padding-left: 10px;
 	padding-right: 10px;
-	border: 1px solid black 
+	border: 1px solid black;
+	cursor: pointer;
 	}
 
 #list { width: 15% }
@@ -24,7 +27,8 @@ body {
 	overflow: scroll;
 	}
 
-.responses, .responses input { width: 100% }
+.responses, .responses input[type=text] { width: 80%; display: inline}
+.responses button { display: inline-block }
 .cities { display: none }
 #content { vertical-align: top; width: 50% }
 #content table { width: 100% }
