@@ -1,0 +1,3 @@
+accessing
+clearLog
+	logs := nil.
