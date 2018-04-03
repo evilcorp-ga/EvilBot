@@ -19,4 +19,7 @@ renderDBListOn: html
 		html listItem 
 			onClick: (html jQuery ajax script: [:s | s << (s jQuery: '#list') html: [:h | self renderAdminsDataOn: h]]);
 			with: [ html text: 'Admins Data' ].
+		html listItem 
+			onClick: (html jQuery ajax script: [:s | s << (s jQuery: '#list') html: [:h | self renderBotOn: h]]);
+			with: [ html text: 'Bot Stuff' ].
 	]

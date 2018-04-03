@@ -9,7 +9,7 @@ body {
 	}
 	
 li { cursor: pointer; }
-	
+#logs { line-height: 0 }
 #menu li { 
 	display: inline;
 	padding-left: 10px;
@@ -20,6 +20,7 @@ li { cursor: pointer; }
 
 #list { width: 15% }
 .key { width: 100px; }
+
 #list ul:first-child { 
 	height: 500px;
 	max-height: 500px;
@@ -30,6 +31,6 @@ li { cursor: pointer; }
 .responses, .responses input[type=text] { width: 80%; display: inline}
 .responses button { display: inline-block }
 .cities { display: none }
-#content { vertical-align: top; width: 50% }
+#content, #list{ vertical-align: top; width: 50% }
 #content table { width: 100% }
 '
