@@ -9,5 +9,5 @@ adminList: aCmd withArray: anArray to: aLoc
 	aList = 'AUTO' ifTrue: [ 
 		aSpec isNil
 			ifTrue: [ self sendPrv: (self autoResponses keys asString) to: aLoc ]
-			ifFalse: [ self sendPrv: (self autoResponses at: aSpec) asArray asString to: aLoc ]
+			ifFalse: [ self sendPrv: (self autoResponses at: aSpec ifAbsent: [OrderedCollection new]) asArray asString to: aLoc ]
 	]
