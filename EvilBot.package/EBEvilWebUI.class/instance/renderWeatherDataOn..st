@@ -10,5 +10,7 @@ renderWeatherDataOn: html
 				]
 			]
 		].
-		"new button here"
-	]
+	].
+		html button 
+			onClick: (html jQuery ajax script: [:s | s << (s jQuery: '#content') html: [:h | self renderWeatherFormOn: h ]]);
+			with: 'New'
