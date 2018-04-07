@@ -8,7 +8,7 @@ weatherCommand: aCmd withArray: anArray to: aLoc
 		aCountry isNil ifTrue: [ ^self sendPrv: 'Enter a TWO LETTER Country Code (eg, US, IN, ZA)' to: aLoc].
 		aCity isNil 
 		ifTrue: [  
-			opt := ((EBEvilDB default data select: [ :e | (e at: 'Country code') = aCountry asUppercase]) collect: [ :e | e at: 'City name English' ]) asSet asOrderedCollection.
+			opt := ((EBEvilDB default data select: [ :e | (e at: 'Country code') = aCountry asUppercase]) collect: [ :e | e at: 'City name' ]) asSet asOrderedCollection.
 			self sendPrv: 'use weather TwoLetterCountryCode (eg ZA), City Name' to: aLoc.
 			self sendCityHelpCommandFor: aLoc cities: opt country: (EBEvilDB default countryNameForCode: aCountry).
 		]
@@ -16,8 +16,8 @@ weatherCommand: aCmd withArray: anArray to: aLoc
 			|weather|
 			opt := ((EBEvilDB default data select: [ :e | 
 				((e at: 'Country code') asUppercase = aCountry asUppercase) & 
-				(e at: 'City name English') asUppercase = aCity asUppercase]) asSet asOrderedCollection).
+				(e at: 'City name') asUppercase = aCity asUppercase]) asSet asOrderedCollection).
 			opt isEmpty ifTrue: [^self sendPrv: 'Sorry, I don''t have that information :(' to: aLoc] ifFalse: [ opt := opt first ].
-			weather := self getWeatherFor: (opt at: 'Link to English-XML' ifAbsent: [ '' ]).
+			weather := self getWeatherFor: (opt at: 'XML' ifAbsent: [ '' ]).
 			self returnWeather: aLoc for: weather contents.
 			 ]

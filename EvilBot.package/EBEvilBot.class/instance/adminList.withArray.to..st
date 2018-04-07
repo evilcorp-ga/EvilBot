@@ -2,6 +2,7 @@ accessing
 adminList: aCmd withArray: anArray to: aLoc
 	| arr aList aSpec|
 	arr := aCmd substrings: ' '.
+	arr size < 2 ifTrue: [ ^nil ].
 	aList := arr second asUppercase.
 	aSpec := arr at: 3 ifAbsent: [nil].
 	aList = 'ADMIN' ifTrue: [ self sendPrv: (self authorizedUsers asArray asString) to: aLoc ].
