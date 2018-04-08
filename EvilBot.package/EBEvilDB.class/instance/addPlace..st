@@ -1,7 +1,7 @@
 accessing
 addPlace: aPlace
 	| aXML anItem aData aLoc aTZTag |
-	aXML := aPlace at: 'Link to English-XML'.
+	aXML := aPlace.
 	aXML isEmptyOrNil ifTrue: [ ^nil ].
 	aData := Soup fromUrl: aXML.
 	aLoc := (aData findTag: 'location') nextSibling.
