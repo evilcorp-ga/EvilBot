@@ -1,3 +1,3 @@
 actions
 restore
-	FLMaterializer materializeFromFileNamed: (FileSystem workingDirectory pathString),'/evilbot.fl'.
+	self default: (FLMaterializer materializeFromFileNamed: (FileSystem workingDirectory pathString),'/evilbot.fl').
