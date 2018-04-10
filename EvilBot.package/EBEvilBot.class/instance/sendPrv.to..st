@@ -1,4 +1,7 @@
 accessing
 sendPrv: aString to: anEntity
-	self log: 'PRIVMSG ',anEntity,' :',aString.
-	self sendCommand: 'PRIVMSG ',anEntity,' :',aString
+	| aPriv |
+	aPriv := 'PRIVMSG ',anEntity,' :',aString.
+	[ aPriv := aPriv utf8Encoded asString] on: Error do: [:ex | ].
+	self log: aPriv.
+	self sendCommand: aPriv.
