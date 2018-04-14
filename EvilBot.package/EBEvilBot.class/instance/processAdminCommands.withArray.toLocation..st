@@ -1,5 +1,6 @@
 accessing
 processAdminCommands: aCmd withArray: anArray toLocation: aLoc
+	(aCmd substrings: ' ') isEmpty ifTrue: [ ^nil ].
 	(self isAuthorized: anArray)
 		ifTrue: [ | aCMD |
 			aCMD := (aCmd substrings: ' ') first asUppercase.

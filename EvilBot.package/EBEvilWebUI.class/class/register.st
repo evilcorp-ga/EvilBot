@@ -4,5 +4,3 @@ register
 		addLibrary: JQDeploymentLibrary.
 	WAAdmin applicationDefaults
     removeParent: WADevelopmentConfiguration instance
-
-		
