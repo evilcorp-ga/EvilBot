@@ -1,3 +1,3 @@
 accessing
 logs
-	^logs ifNil: [ logs := OrderedCollection new. logs ]
+	^logs ifNil: [ logs := Dictionary new. logs ]

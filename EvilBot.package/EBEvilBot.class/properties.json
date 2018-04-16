@@ -4,7 +4,8 @@
 	"category" : "EvilBot",
 	"classinstvars" : [
 		"default",
-		"logs"
+		"logs",
+		"oldLogs"
 	],
 	"pools" : [ ],
 	"classvars" : [ ],
@@ -22,7 +23,9 @@
 		"log",
 		"names",
 		"lastPong",
-		"currancyKey"
+		"currancyKey",
+		"connected",
+		"hasJoined"
 	],
 	"name" : "EBEvilBot",
 	"type" : "normal"

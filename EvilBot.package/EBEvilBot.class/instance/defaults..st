@@ -1,7 +1,6 @@
 accessing
 defaults: aPass
 	self password: aPass.
-	channels := self class defaultchannels.
 	self setKeys.
 	self desc: (self class defaultdesc).
 	self nick: self nick.
@@ -16,3 +15,4 @@ defaults: aPass
 	socketStream sendCommand: 'NICK ',self nick.
 	socketStream flush.
 	self setupCommandFiltering.
+	

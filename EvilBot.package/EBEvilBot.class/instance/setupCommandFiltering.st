@@ -8,7 +8,9 @@ setupCommandFiltering
 			aLine = EBEvilBot
 				ifFalse: [  
 			(aLine beginsWith: 'PING')
-				ifTrue: [ self sendCommand: 'PONG' ]
+				ifTrue: [ 
+					self channels do: [ :e | self sendCommand: 'JOIN #',e ].
+					self sendCommand: 'PONG' ]
 				ifFalse: [ 
 					aLine := aLine asByteArray utf8Decoded.
 					self log: aLine.

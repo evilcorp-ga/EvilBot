@@ -1,6 +1,5 @@
 accessing
 defaults
-	channels := self class defaultchannels.
 	self setKeys.
 	self desc: (self class defaultdesc).
 	self nick: self nick.

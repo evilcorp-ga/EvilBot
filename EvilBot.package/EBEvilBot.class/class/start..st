@@ -1,3 +1,3 @@
 accessing
 start: aPassword
-	default := self new defaults: aPassword
+	self start: aPassword nick: self defaultName

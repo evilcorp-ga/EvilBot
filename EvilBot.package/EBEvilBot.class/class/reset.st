@@ -1,4 +1,4 @@
 accessing
 reset
 	default := nil.
-	logs := nil.
+	self clearLog

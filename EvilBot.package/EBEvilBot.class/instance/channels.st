@@ -1,3 +1,3 @@
 accessing
 channels
-	^ channels ifNil: [ channels := self class defaultchannels. channels ]
+	^ channels ifNil: [ self channels: self class defaultchannels. channels ]
