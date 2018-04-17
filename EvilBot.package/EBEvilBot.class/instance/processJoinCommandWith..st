@@ -1,6 +1,8 @@
 initialization
 processJoinCommandWith: anArray
 	| aUser  |
+	anArray isEmptyOrNil ifTrue: [ ^nil ].
+	(anArray first substrings: '!') isEmptyOrNil ifTrue: [ ^nil ].
 	aUser := (anArray first substrings: '!') first.
 	aUser = self nick 
 		ifTrue: [ | aChan |
