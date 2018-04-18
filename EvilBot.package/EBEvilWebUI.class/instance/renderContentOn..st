@@ -1,5 +1,10 @@
 rendering
 renderContentOn: html
+	| aSecret isValid |
+	Smalltalk at: #ECDatabase ifPresent: [
+	[ aSecret := html requestContext consumer peek ] on: Error do: [ :ex | ^nil].
+	isValid := ((#ECDatabase asClass default data at: 'users') select: [ :e | e isAdmin ] thenCollect: [ :e | e secret ]) select: [ :e | e = aSecret ].
+	isValid isEmpty ifTrue: [ ^nil ]].
 	html text: 'Welcome to the EvilBot Database Editor'.
 	html table: [ 
 		html tableRow: [ 
