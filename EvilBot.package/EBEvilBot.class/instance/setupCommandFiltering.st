@@ -12,7 +12,7 @@ setupCommandFiltering
 					self channels do: [ :e | self sendCommand: 'JOIN #',e ].
 					self sendCommand: 'PONG' ]
 				ifFalse: [ 
-					aLine := aLine asByteArray utf8Decoded.
+					aLine := [ aLine asByteArray utf8Decoded ] on: Error do: [:ex | aLine := aLine ].
 					self log: aLine.
 					anArr := aLine substrings: ' '.
 					textArr := self getArrFrom: aLine.

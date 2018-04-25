@@ -9,6 +9,6 @@ sendCityHelpCommandForPrv: aLoc cities: aCities country: aCollection
 				aParser := NeoCSVWriter on: (aSt := WriteStream on: '').
 				aParser nextPut: opt asOrderedCollection.
 				self 
-					sendPrv: ((aSt contents copyReplaceAll: (String crlf asString) with: '') asString) utf8Encoded 
+					sendPrv: ((aSt contents copyReplaceAll: (String crlf asString) with: '') asString) 
 					to: aLoc
 			]
