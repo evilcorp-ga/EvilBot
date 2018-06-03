@@ -3,6 +3,7 @@ processCommand: aCmd withArray: anArray forLocation: aLoc
 
 	(aCmd asUppercase beginsWith: 'WEATHER') ifTrue: [ self weatherCommand: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: 'SEARCH') ifTrue: [ self searchCommand: aCmd withArray: anArray to: aLoc ].
+	(aCmd asUppercase beginsWith: 'WIKI') ifTrue: [ self wikiCommand: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: 'YOUTUBE') ifTrue: [ self searchYoutube: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase beginsWith: 'TIME') ifTrue: [ self processTimeCommand: aCmd withArray: anArray to: aLoc ].
 	(aCmd asUppercase = 'SAVE') ifTrue: [ self processSaveCommand: anArray to: aLoc ].
