@@ -1,5 +1,6 @@
 initialization
 processCommand: aCmd from: anArray
+(aCmd = 'INVITE') ifTrue:  [ self processInviteCommandWith: anArray ].
 (aCmd = 'NOTICE') ifTrue: [ self processNoticeCommandWith: anArray].
 (aCmd = 'PRIVMSG') ifTrue: [ self processPrivMsgCommandWith: anArray ].
 (aCmd = 'JOIN') ifTrue: [ self processJoinCommandWith: anArray ].
