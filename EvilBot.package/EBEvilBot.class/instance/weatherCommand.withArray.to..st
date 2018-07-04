@@ -2,6 +2,7 @@ accessing
 weatherCommand: aCmd withArray: anArray to: aLoc
 		| arr aCountry opt aCity|
 		arr := aCmd substrings: ' '.
+		(arr at: 2) size < 2 ifTrue: [ ^self sendPrv: 'Err? What?' to: aLoc ].
 		arr size > 1 ifTrue: [ aCountry := (arr at: 2) trimBoth copyFrom: 1 to: 2].
 		arr := aCmd substrings: ','.
 		arr size > 1 ifTrue: [ aCity := (arr at: 2) trimBoth ].
@@ -14,9 +15,9 @@ weatherCommand: aCmd withArray: anArray to: aLoc
 		]
 		ifFalse: [
 			|weather|
-			opt := ((EBEvilDB default data select: [ :e | 
+			opt := (EBEvilDB default data select: [ :e | 
 				((e at: 'Country code') asUppercase = aCountry asUppercase) & 
-				(e at: 'City name') asUppercase = aCity asUppercase]) asSet asOrderedCollection).
+				((e at: 'City name') asUppercase = aCity asUppercase) ]) asSet asOrderedCollection.
 			opt isEmpty ifTrue: [^self sendPrv: 'Sorry, I don''t have that information :(' to: aLoc] ifFalse: [ opt := opt first ].
 			weather := self getWeatherFor: (opt at: 'XML' ifAbsent: [ '' ]).
 			weather isNotFound 
