@@ -7,3 +7,5 @@ This is IN PROGRESS, so YMMV
 https://github.com/svenvc/XML-Support-Pharo
 
 https://github.com/svenvc/NeoCSV
+
+For webui: https://github.com/SeasideSt/Seaside
