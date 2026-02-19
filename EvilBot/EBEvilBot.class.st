@@ -167,6 +167,7 @@ EBEvilBot class >> start: aPassword nick: aString [
 
 { #category : 'accessing' }
 EBEvilBot class >> styxnet [
+	default ifNotNil: [  default quit ].
 	self
 		host: 'irc.styxnet.tech'
 		port: 6667
@@ -177,13 +178,14 @@ EBEvilBot class >> styxnet [
 
 { #category : 'accessing' }
 EBEvilBot >> adminAddAdmin: aCmd withArray: anArray to: aLoc [
+
 	| anAdmin |
-	((aCmd substrings: ' ') size = 3)
-		ifTrue: [ 
-			anAdmin := (aCmd substrings: ' ') last.
-			self authorizedUsers add: anAdmin.
-			self sendPrv: (anAdmin,' has been added as an authorized user') to: aLoc
-		]
+	(aCmd substrings: ' ') size = 3 ifFalse: [ ^ self ].
+	anAdmin := (aCmd substrings: ' ') last.
+	self authorizedUsers add: anAdmin.
+	self
+		sendPrv: anAdmin , ' has been added as an authorized user'
+		to: aLoc
 ]
 
 { #category : 'accessing' }
@@ -220,49 +222,83 @@ EBEvilBot >> adminAddResponse: aCmd withArray: anArray to: aLoc [
 
 { #category : 'accessing' }
 EBEvilBot >> adminList: aCmd withArray: anArray to: aLoc [
-	| arr aList aSpec|
+
+	| arr aList aSpec |
 	arr := aCmd substrings: ' '.
-	arr size < 2 ifTrue: [ ^nil ].
+	arr size < 2 ifTrue: [ ^ nil ].
 	aList := arr second asUppercase.
-	aSpec := arr at: 3 ifAbsent: [nil].
-	aList = 'ADMIN' ifTrue: [ self sendPrv: (self authorizedUsers asArray asString) to: aLoc ].
-	aList = 'RESPONSE' ifTrue: [ self sendPrv: (self responses keys asString) to: aLoc ].
-	aList = 'AUTO' ifTrue: [ 
-		aSpec isNil
-			ifTrue: [ self sendPrv: (self autoResponses keys asString) to: aLoc ]
-			ifFalse: [ self sendPrv: (self autoResponses at: aSpec ifAbsent: [OrderedCollection new]) asArray asString to: aLoc ]
-	]
+	aSpec := arr at: 3 ifAbsent: [ nil ].
+	aList = 'ADMIN' ifTrue: [
+		self sendPrv: self authorizedUsers asArray asString to: aLoc ].
+	aList = 'RESPONSE' ifTrue: [
+		self sendPrv: self responses keys asString to: aLoc ].
+	aList = 'AUTO' ifTrue: [
+		aSpec
+			ifNil: [ self sendPrv: self autoResponses keys asString to: aLoc ]
+			ifNotNil: [
+				self
+					sendPrv:
+						(self autoResponses
+							 at: aSpec
+							 ifAbsent: [ OrderedCollection new ]) asArray asString
+					to: aLoc ] ]
 ]
 
 { #category : 'accessing' }
 EBEvilBot >> adminRemove: aCmd withArray: anArray to: aLoc [
-	| arr aList aValue anIndex|
+
+	| arr aList aValue anIndex |
 	arr := aCmd substrings: ' '.
-	arr size < 3 ifTrue: [ ^'' ].
+	arr size < 3 ifTrue: [ ^ '' ].
 	aList := arr second asUppercase.
 	aValue := arr third.
 	anIndex := arr at: 4 ifAbsent: [ 'nil' ].
 	anIndex := anIndex asInteger.
-	aList = 'RESPONSE' ifTrue: [ 
-		self sendPrv: ('Removing ',aValue,' from ', aList asLowercase) to: aLoc.
-		self responses removeKey: aValue ifAbsent: [ 
-			self sendPrv: (aValue,' doesn''t exist in ',aList asLowercase) to: aLoc] ].
-	aList = 'ADMIN' ifTrue: [ 
-		self sendPrv: ('Removing ',aValue,' from ', aList asLowercase) to: aLoc.
-		self authorizedUsers remove: aValue ifAbsent: [ 
-			self sendPrv: (aValue,' doesn''t exist in ',aList asLowercase) to: aLoc ] ].
-	aList = 'AUTO' ifTrue: [ 
-		anIndex isNil 
-			ifTrue: [ 
-					self sendPrv: ('Removing ',aValue,' from ', aList asLowercase) to: aLoc.
-					self autoResponses removeKey: aValue ifAbsent: [ 
-						self sendPrv: (aValue,' doesn''t exist in ',aList asLowercase) to: aLoc ] ]
-			ifFalse: [ 
-					self sendPrv: ('Removing ',anIndex asString,' from ',aValue,' in ', aList asLowercase) to: aLoc.
-				(self autoResponses at: aValue ifAbsent: [OrderedCollection new]) size >= anIndex asInteger
-					ifTrue: [ (self autoResponses at: aValue ifAbsent: [OrderedCollection new]) removeIndex: anIndex asNumber ]
-					ifFalse: [ self sendPrv: (aValue,' doesn''t have an index of value ',anIndex asString,' in ',aList asLowercase) to: aLoc ] ]
-	].
+	aList = 'RESPONSE' ifTrue: [
+		self
+			sendPrv: 'Removing ' , aValue , ' from ' , aList asLowercase
+			to: aLoc.
+		self responses removeKey: aValue ifAbsent: [
+			self
+				sendPrv: aValue , ' doesn''t exist in ' , aList asLowercase
+				to: aLoc ] ].
+	aList = 'ADMIN' ifTrue: [
+		self
+			sendPrv: 'Removing ' , aValue , ' from ' , aList asLowercase
+			to: aLoc.
+		self authorizedUsers remove: aValue ifAbsent: [
+			self
+				sendPrv: aValue , ' doesn''t exist in ' , aList asLowercase
+				to: aLoc ] ].
+	aList = 'AUTO' ifTrue: [
+		anIndex
+			ifNil: [
+				self
+					sendPrv: 'Removing ' , aValue , ' from ' , aList asLowercase
+					to: aLoc.
+				self autoResponses removeKey: aValue ifAbsent: [
+					self
+						sendPrv: aValue , ' doesn''t exist in ' , aList asLowercase
+						to: aLoc ] ]
+			ifNotNil: [
+				self
+					sendPrv:
+						'Removing ' , anIndex asString , ' from ' , aValue , ' in '
+						, aList asLowercase
+					to: aLoc.
+				(self autoResponses at: aValue ifAbsent: [ OrderedCollection new ])
+					size >= anIndex asInteger
+					ifTrue: [
+						(self autoResponses
+							 at: aValue
+							 ifAbsent: [ OrderedCollection new ]) removeIndex:
+							anIndex asNumber ]
+					ifFalse: [
+						self
+							sendPrv:
+								aValue , ' doesn''t have an index of value '
+								, anIndex asString , ' in ' , aList asLowercase
+							to: aLoc ] ] ]
 ]
 
 { #category : 'initialization' }
@@ -374,11 +410,9 @@ EBEvilBot >> htmlDecode: aString [
 
 { #category : 'initialization' }
 EBEvilBot >> isAuthorized: anArray [
-	self authorizedUsers do: [ :e | 
-		(anArray first beginsWith: e)
-			ifTrue: [ ^true ]
-	].
-	^false
+
+	^ self authorizedUsers anySatisfy: [ :e |
+		  anArray first beginsWith: e ]
 ]
 
 { #category : 'initialization' }
@@ -506,19 +540,19 @@ EBEvilBot >> processCommand: aCmd [
 
 { #category : 'initialization' }
 EBEvilBot >> processCommand: aCmd from: anArray [
-(aCmd = 'INVITE') ifTrue:  [ self processInviteCommandWith: anArray ].
-(aCmd = 'NOTICE') ifTrue: [ self processNoticeCommandWith: anArray].
-(aCmd = 'PRIVMSG') ifTrue: [ self processPrivMsgCommandWith: anArray ].
-(aCmd = 'JOIN') ifTrue: [ self processJoinCommandWith: anArray ].
-(aCmd = '353') | (aCmd = 353) ifTrue: [ self processNamesFrom: anArray ].
-(aCmd = '372') | (aCmd = 372) ifTrue: [ 
-	(hasJoined ifNil: [ hasJoined := false ])
-		ifFalse: [ self channels do: [ :e | 
-				(e beginsWithSubCollection: '#')
-					ifTrue: [ self sendCommand: 'JOIN ',e ]
-					ifFalse: [ self sendCommand: 'JOIN #',e  ] ] ].
-	hasJoined := true.]
 
+	aCmd = 'INVITE' ifTrue: [ self processInviteCommandWith: anArray ].
+	aCmd = 'NOTICE' ifTrue: [ self processNoticeCommandWith: anArray ].
+	aCmd = 'PRIVMSG' ifTrue: [ self processPrivMsgCommandWith: anArray ].
+	aCmd = 'JOIN' ifTrue: [ self processJoinCommandWith: anArray ].
+	aCmd = '353' | (aCmd = 353) ifTrue: [ self processNamesFrom: anArray ].
+	aCmd = '372' | (aCmd = 372) ifFalse: [ ^ self ].
+	(hasJoined ifNil: [ hasJoined := false ]) ifFalse: [
+		self channels do: [ :e |
+			(e beginsWithSubCollection: '#')
+				ifTrue: [ self sendCommand: 'JOIN ' , e ]
+				ifFalse: [ self sendCommand: 'JOIN #' , e ] ] ].
+	hasJoined := true
 ]
 
 { #category : 'accessing' }
@@ -649,13 +683,13 @@ EBEvilBot >> processSaveCommand: anArray to: aLoc [
 
 { #category : 'accessing' }
 EBEvilBot >> quit [
-	socketStream isNil ifFalse: [
-	socketStream isConnected 
-		ifTrue: [ 
+
+	socketStream ifNotNil: [
+		socketStream isConnected ifTrue: [
 			socketStream sendCommand: 'QUIT I''m Melting'.
-			socketStream flush; close.
-		]
-	]
+			socketStream
+				flush;
+				close ] ]
 ]
 
 { #category : 'initialization' }
@@ -712,12 +746,9 @@ EBEvilBot >> sendCommand: aString [
 
 { #category : 'initialization' }
 EBEvilBot >> sendLinkDesc: aLink to: aLoc [
- | aUrl aTitle aLinkString |
+ | aLinkString |
 	aLinkString := aLink.
-	aUrl := ZnUrl fromString: aLinkString.
-	[[aTitle := (((Soup fromString: aUrl retrieveContents) findTag: 'head') findTag: 'title') text.
-	self sendPrv: aTitle to: aLoc] on: Error do: [ :ex | 
-		self sendPrv: ex asString to: aLoc ]] fork
+	(SAXHandler parseURL: aLinkString) inspect.
 ]
 
 { #category : 'accessing' }
@@ -744,24 +775,27 @@ cx := '011057986802624939462:kku_6mla-yq'.
 
 { #category : 'initialization' }
 EBEvilBot >> setupCommandFiltering [
-	[ [ socketStream isConnected ]
-		whileTrue: [ | anArr textArr aCmd aLine |
-			aLine := [ socketStream nextLine ]
-				on: ConnectionClosed
-				do: [ self class quit ].
-			aLine = EBEvilBot
-				ifFalse: [  
+
+	[
+	[ socketStream isConnected ] whileTrue: [
+		| anArr textArr aCmd aLine |
+		aLine := [ socketStream nextLine ]
+			         on: ConnectionClosed
+			         do: [ self class quit ].
+		aLine = EBEvilBot ifFalse: [
 			(aLine beginsWith: 'PING')
-				ifTrue: [ 
-					self channels do: [ :e | self sendCommand: 'JOIN #',e ].
+				ifTrue: [
+					self channels do: [ :e | self sendCommand: 'JOIN #' , e ].
 					self sendPong: aLine ]
-				ifFalse: [ 
-					aLine := [ aLine asByteArray utf8Decoded ] on: Error do: [:ex | aLine := aLine ].
+				ifFalse: [
+					aLine := [ aLine asByteArray utf8Decoded ]
+						         on: Error
+						         do: [ :ex |  ].
 					self log: aLine.
 					anArr := aLine substrings: ' '.
 					textArr := self getArrFrom: aLine.
 					aCmd := anArr size > 1
-						ifTrue: [ anArr at: 2 ]
-						ifFalse: [ 0 ].
+						        ifTrue: [ anArr at: 2 ]
+						        ifFalse: [ 0 ].
 					self processCommand: aCmd from: textArr ] ] ] ] fork
 ]
